@@ -43,6 +43,7 @@ class ProxyToServer(object):
         else:  
             addr = hostname
 
+        print addr
         port = int(port)
 
         ip = socket.gethostbyname(addr)  # 根据主机名获取ip地址

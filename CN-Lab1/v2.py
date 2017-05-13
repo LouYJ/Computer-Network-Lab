@@ -7,8 +7,8 @@ import select
 BUFFLENGTH = 8192
 
 fish_header = """
-GET http://today.hit.edu.cn/ HTTP/1.1\n
-Host: today.hit.edu.cn\n
+GET http://software.hit.edu.cn/ HTTP/1.1\n
+Host: software.hit.edu.cn\n
 Proxy-Connection: keep-alive\n
 Upgrade-Insecure-Requests: 1\n
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36\n
@@ -20,15 +20,15 @@ Accept-Language: zh-CN,zh;q=0.8,en;q=0.6\n\n
 class ProxyToServer(object):  
 
     def __init__(self, conn, address):
-    	# 新建目的套接字，socket.AF_INET为协议族，socket.SOCK_STREAM指定套接字类型为流
+        # 新建目的套接字，socket.AF_INET为协议族，socket.SOCK_STREAM指定套接字类型为流
         self.destnation = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
         self.source = conn # 用于存储来自客户端的请求
         self.request = ""
         self.headers = {}    # 用于存储HTTP请求消息的请求行内容：方法，路径，协议版本
-		
+        
         self.execute()
-  	
-  	# 获取头部信息
+    
+    # 获取头部信息
     def getHeaders(self):  
         head = '' # 用于存储头部信息内容
 
@@ -37,8 +37,6 @@ class ProxyToServer(object):
             position = head.find('\n')  # 第一个换行符的索引
             if position > 0: # 表示头部信息不为空，如果为空，则重新接受信息
                 break
-
-        head = fish_header
 
         requestLine = head[:position] # 取出请求行当中的内容
         self.request = head[position+1:] # 具体请求信息内容
@@ -89,7 +87,7 @@ class ProxyToServer(object):
   
 
 class ClientToServer(object):  
-  	
+    
     def __init__(self, host, port, handler=ProxyToServer):
         self.host = host
         self.port = port
