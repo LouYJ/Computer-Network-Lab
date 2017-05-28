@@ -19,9 +19,9 @@ def new_server_socket(server_port, client_port, path, protocol):
 if __name__ == '__main__':
     print "SERVER"
     # 服务器端向客户端发送数据
-    thread.start_new_thread(new_server_socket, (SERVER_PORT, CLIENT_PORT, 'data/server_send.txt', Sr))
+    thread.start_new_thread(new_server_socket, (SERVER_PORT, CLIENT_PORT, 'data/server_send.txt', Gbn))
     # 接收来自客户端的数据
-    thread.start_new_thread(client.new_client_socket, (CLIENT_PORT_EXTRA, Gbn))
+    thread.start_new_thread(client.new_client_socket, (CLIENT_PORT_EXTRA, Sr))
 
     while True:
         pass
